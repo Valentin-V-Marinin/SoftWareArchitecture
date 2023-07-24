@@ -3,7 +3,15 @@ package seminar3;
 import java.awt.*;
 
 public class OffRoadCar extends Car implements iFuelStation{
+
+    public iFuelStation ifs;
     private int clearance;
+
+    public OffRoadCar(String brand, String model, Color color, String bodyType, int wheelsNumber, eFuelType fuelType, String transmission, double engineCapacity, iFuelStation ifs, int clearance) {
+        super(brand, model, color, bodyType, wheelsNumber, fuelType, transmission, engineCapacity);
+        this.ifs = ifs;
+        this.clearance = clearance;
+    }
 
     /**
      * Realisation of abstract class "Car"
@@ -17,10 +25,6 @@ public class OffRoadCar extends Car implements iFuelStation{
      * @param engineCapacity    engine capacity of the car except electrocar
      * @param clearance         gap between ground and bottom car's body, mm
      */
-    public OffRoadCar(String brand, String model, Color color, String bodyType, int wheelsNumber, eFuelType fuelType, String transmission, double engineCapacity, int clearance) {
-        super(brand, model, color, bodyType, wheelsNumber, fuelType, transmission, engineCapacity);
-        this.clearance = clearance;
-    }
 
     public int getClearance() {
         return clearance;
@@ -30,28 +34,34 @@ public class OffRoadCar extends Car implements iFuelStation{
         this.clearance = clearance;
     }
 
+    @Override
+    public void refuel() {
+        ifs.refuel();
+    }
+
     /**
      * Implementation iFuelStation interface,
      * refuel a car method
      */
-    @Override
-    public void refuel() {
-        switch (getFuelType()) {
-            case GAS -> {
-                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with GAS.");
-            }
-            case PETROL -> {
-                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with PETROL.");
-            }
-            case DIESEL -> {
-                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with DIESEL.");
-            }
-            case KEROSENE -> {
-                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with KEROSENE.");
-            }
-            case ELECTRICITY -> {
-                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with ELECTRICITY.");
-            }
-        }
-    }
+//    @Override
+//    public void refuel() {
+//        switch (getFuelType()) {
+//            case GAS -> {
+//                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with GAS.");
+//            }
+//            case PETROL -> {
+//                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with PETROL.");
+//            }
+//            case DIESEL -> {
+//                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with DIESEL.");
+//            }
+//            case KEROSENE -> {
+//                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with KEROSENE.");
+//            }
+//            case ELECTRICITY -> {
+//                System.out.println("Refuel the car(" + getBrand() + " " + getModel() + ") with ELECTRICITY.");
+//            }
+//        }
+//    }
+
 }
